@@ -38,7 +38,10 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+<<<<<<< Updated upstream
   'history-substring-search' \
+=======
+>>>>>>> Stashed changes
   'syntax-highlighting' \
   'prompt' \
   'ssh' \
