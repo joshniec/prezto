@@ -5,7 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-zmodload zsh/zprof
+#zmodload zsh/zprof
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -14,8 +14,8 @@ fi
 
 # Customize to your needs...
 
-alias sc=slackcat
+alias sc='slackcat'
+alias vim='nvim'
+alias python='python3'
 
-source $HOME/.zshenv
-
-zprof
+#zprof
