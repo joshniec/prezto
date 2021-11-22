@@ -10,11 +10,24 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+# Starship Shell Prompt
+export STARSHIP_CONFIG="$HOME/.config/starship/config.toml"
+
+export GOPATH="$HOME/source/go"
+
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:/mnt/d/Programs/Microsoft VS Code/bin/code"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# Windows paths
+export PATH="$PATH:/mnt/d/Programs/Microsoft VS Code/bin"
 export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+export PATH="$PATH:/mnt/c/WINDOWS/System32"
+
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/jniec/.kitchen"
 
 export EDITOR="nvim"
 export GH_EDITOR="nvim"
@@ -26,4 +39,8 @@ export LESS="-F -X $LESS"
 # enable gpg signing
 export GPG_TTY=$(tty)
 
+# silence keybase path warnings
+export KEYBASE_PATH_WARNING=0
 
+# for WSL2, use dokken file for test kitchen 
+export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
