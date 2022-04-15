@@ -44,3 +44,6 @@ export KEYBASE_PATH_WARNING=0
 
 # for WSL2, use dokken file for test kitchen 
 export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+
+# tfenv, don't auto install
+export TFENV_AUTO_INSTALL=false
