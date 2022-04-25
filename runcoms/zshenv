@@ -23,13 +23,12 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 . "$HOME/.cargo/env"
 
-# Windows paths
-export PATH="$PATH:/mnt/d/Programs/Microsoft VS Code/bin"
-export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
-export PATH="$PATH:/mnt/c/WINDOWS/System32"
-
-export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
-export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/jniec/.kitchen"
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Windows paths
+    export PATH="$PATH:/mnt/d/Programs/Microsoft VS Code/bin"
+    export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+    export PATH="$PATH:/mnt/c/WINDOWS/System32"
+fi 
 
 export EDITOR="vim"
 export GH_EDITOR="vim"
@@ -46,7 +45,7 @@ export GPG_TTY=$(tty)
 # silence keybase path warnings
 export KEYBASE_PATH_WARNING=0
 
-# for WSL2, use dokken file for test kitchen 
+# use dokken file for test kitchen 
 export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
 
 # tfenv, don't auto install
