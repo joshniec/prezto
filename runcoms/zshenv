@@ -10,12 +10,57 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export PATH=$PATH:$HOME/.local/bin
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# asdf
+export ASDF_DIR="$HOME/.asdf"
 
-export EDITOR="nvim"
-export GH_EDITOR="nvim"
+# golang
+export GOPATH="$HOME/source/go"
+
+# ruby
+# ignore depreciation warnings
+export RUBYOPT="-W0"
+
+# rust
+source "$HOME/.cargo/env"
+
+# Path Stuff
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
+if [[ "$OSTYPE" == darwin* ]]; then
+  # macOS paths
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  export BROWSER='open'
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Windows paths
+    export PATH="$PATH:/mnt/d/Programs/Microsoft VS Code/bin"
+    export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+    export PATH="$PATH:/mnt/c/WINDOWS/System32"
+fi
+
+export EDITOR="vim"
+export GH_EDITOR="vim"
 export TERM="xterm-256color"
 
+# Starship CLI
+export STARSHIP_CONFIG=$HOME/.starship.toml
+
+# tell 'less' to not paginate if less than a page
 export LESS="-F -X $LESS"
+
+# enable gpg signing
 export GPG_TTY=$(tty)
+
+# silence keybase path warnings
+export KEYBASE_PATH_WARNING=0
+
+# use dokken file for test kitchen
+export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+
+# tfenv, don't auto install
+export TFENV_AUTO_INSTALL=false

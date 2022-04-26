@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+#zmodload zsh/zprof
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -14,4 +16,44 @@ fi
 if [[ -s "${HOME}/.zshinc" ]]; then
   source "${HOME}/.zshinc"
 fi
+
+alias shc='shellcheck --color=always --shell=bash'
+alias sc='slackcat'
+alias vi='vim'
+alias python='python3'
+alias cat='bat --style=plain'
+alias ls='exa'
+alias tf='terraform'
+alias pc='package_cloud'
+alias ce='chef exec'
+export do='-o yaml --dry-run=client'
+
+command -v kubectl >/dev/null && source <(kubectl completion zsh)
+alias kubectl=kubecolor
+alias kc=kubecolor
+compdef kubecolor=kubectl
+
+my-backward-delete-word () {
+   local WORDCHARS='~!#$%^&*(){}[]<>?+;'
+   zle backward-delete-word
+}
+
+zle -N my-backward-delete-word
+bindkey '^W' my-backward-delete-word
+
+# z jump utility
+[ -s "/usr/local/etc/profile.d/z.sh" ] && \. /usr/local/etc/profile.d/z.sh
+
+[ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh" # This loads asdf
+fpath=($ASDF_DIR/completions $fpath)
+
+command -v starship >/dev/null && eval "$(starship init zsh)"
+
+compinit
+
+if [[ -s "${HOME}/.zshsecrets" ]]; then
+    source "${HOME}/.zshsecrets"
+fi
+
+#zprof
 
