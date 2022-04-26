@@ -44,7 +44,6 @@ bindkey '^W' my-backward-delete-word
 [ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh" # This loads asdf
 fpath=($ASDF_DIR/completions $fpath)
 
-export STARSHIP_CONFIG=$HOME/.config/starship/config.toml
 command -v starship >/dev/null && eval "$(starship init zsh)"
 
 compinit
